@@ -9,7 +9,7 @@ const mongoose = require('mongoose')
     ; (async function () {
         try {
             await mongoose.connect(process.env.MONGO_URL || 'mongodb://localhost:27017/', {
-                dbName: process.env.MONGO_DB || 'proyecto2'
+                dbName: process.env.MONGO_DB || 'proyecto3'
             })
             console.log('💾 Connected to DB')
         } catch (err) {
@@ -21,7 +21,7 @@ const mongoose = require('mongoose')
                 .use(cors())
                 .use(morgan('dev'))
                 .use(express.json())
-           //     .use('/api', require('./routes/index'))
+                .use('/api', require('./routes/index'))
 
             const PORT = process.env.PORT || 8080
             app.listen(PORT, (err) => {
