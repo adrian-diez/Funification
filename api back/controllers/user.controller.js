@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt')
 
 const createUser = async (req, res) => {
     try {
-        const hashed_pwd = bcrypt.hashSync(req.body.password, 10)
+        const hashed_pwd = bcrypt.hashSync(req.body.password, parseInt(process.env.SALT))
         const user = await userModel.create({
             name: req.body.name,
             email: req.body.email,
@@ -63,11 +63,13 @@ const deleteUserById = async (req, res) => {
 
 const getStudents = async (req, res) => {
     try {
-        const user = await userModel
+        const student = await userModel
             .find({
                 "role": "Student"
-            })
-        res.json(user)
+            }, {password: 0})
+        res.json({
+            student
+        })
     } catch (error) {
 
     }
