@@ -25,7 +25,7 @@ const createUser = async (req, res) => {
 
 const getAllUsers = async (req, res) => {
     try {
-        const user = await userModel.find()
+        const user = await userModel.find(req.params)
         res.json(user)
 
     } catch (error) {
@@ -33,10 +33,10 @@ const getAllUsers = async (req, res) => {
     }
 }
 
-/*const updateUser = async (req, res) => {
+const updateUser = async (req, res) => {
     try {
         const user = await userModel
-            .findByIdAndUpdate(req.params.id, req.body, {
+            .findByIdAndUpdate(req.params.userId, req.body, {
                 new: true,
                 runValidators: true
             })
@@ -45,25 +45,27 @@ const getAllUsers = async (req, res) => {
     } catch (error) {
         res.status(500).send(error)
     }
-}*/
+}
 
 const deleteUserById = async (req, res) => {
     try {
-        const user = await userModel.remove({
-            _id: req.params.id
+        const user = await userModel.findByIdAndRemove(req.params.userId)
+        res.json({
+            name : user.name,
+            email : user.email,
+            deleted : true
         })
-        res.json("user deleted")
 
     } catch (error) {
         res.status(500).send(error)
     }
 }
 
-/*const filterUsersByStore = async (req, res) => {
+const getStudents = async (req, res) => {
     try {
         const user = await userModel
             .find({
-                "store": req.params.id
+                "role": "Student"
             })
         res.json(user)
     } catch (error) {
@@ -71,9 +73,11 @@ const deleteUserById = async (req, res) => {
     }
 
 }
-*/
+
 module.exports = {
     createUser,
-    getAllUsers ,
-    deleteUserById 
+    getAllUsers,
+    updateUser,
+    deleteUserById,
+    getStudents
 }
