@@ -11,4 +11,5 @@ const {
 router.post('/signup', signup)
 .post('/login', login)
 .get('/check', check)
+
 module.exports = router 

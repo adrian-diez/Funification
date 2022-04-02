@@ -1,11 +1,11 @@
-const userModel = require('../models/users.model')
+const UserModel = require('../models/users.model')
 const bcrypt = require('bcrypt')
 
 
 const createUser = async (req, res) => {
     try {
         const hashed_pwd = bcrypt.hashSync(req.body.password, parseInt(process.env.SALT))
-        const user = await userModel.create({
+        const user = await UserModel.create({
             name: req.body.name,
             email: req.body.email,
             password: hashed_pwd,
@@ -25,7 +25,7 @@ const createUser = async (req, res) => {
 
 const getAllUsers = async (req, res) => {
     try {
-        const user = await userModel.find(req.params)
+        const user = await UserModel.find(req.params)
         res.json(user)
 
     } catch (error) {
@@ -35,7 +35,7 @@ const getAllUsers = async (req, res) => {
 
 const updateUser = async (req, res) => {
     try {
-        const user = await userModel
+        const user = await UserModel
             .findByIdAndUpdate(req.params.userId, req.body, {
                 new: true,
                 runValidators: true
@@ -49,7 +49,7 @@ const updateUser = async (req, res) => {
 
 const deleteUserById = async (req, res) => {
     try {
-        const user = await userModel.findByIdAndRemove(req.params.userId)
+        const user = await UserModel.findByIdAndRemove(req.params.userId)
         res.json({
             name : user.name,
             email : user.email,
@@ -63,7 +63,7 @@ const deleteUserById = async (req, res) => {
 
 const getStudents = async (req, res) => {
     try {
-        const student = await userModel
+        const student = await UserModel
             .find({
                 "role": "Student"
             }, {password: 0})
