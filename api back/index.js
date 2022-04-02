@@ -29,7 +29,7 @@ const mongoose = require('mongoose')
                     console.log(err)
                 }
                 console.info('>'.repeat(40))
-                console.info('🧑‍🍳  Cuisine Server Live')
+                console.info('🧑‍🍳  Funification')
                 console.info(`📡  PORT: http://localhost:${PORT}`)
                 console.info('>'.repeat(40) + '\n')
             })

@@ -5,10 +5,10 @@ const router = require('express').Router()
     checkAdmin
 } = require('../utils/index')*/
 
-const { createUser, getAllUsers } = require('../controllers/user.controller')
+const { createUser, getAllUsers, deleteUserById } = require('../controllers/user.controller')
 router.post('/', createUser)
 router.get('/', getAllUsers)
-/*router.put('/:userId', checkAuth, checkAdmin, editOneUserRole)
-router.delete('/:userId', checkAuth, checkAdmin, deleteOneUserProfile)*/
+/*router.put('/:userId', checkAuth, checkAdmin, editOneUserRole)*/
+router.delete('/:userId', deleteUserById)
 
 module.exports = router

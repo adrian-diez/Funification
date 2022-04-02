@@ -45,21 +45,21 @@ const getAllUsers = async (req, res) => {
     } catch (error) {
         res.status(500).send(error)
     }
-}
+}*/
 
 const deleteUserById = async (req, res) => {
     try {
         const user = await userModel.remove({
             _id: req.params.id
         })
-        res.json(user)
+        res.json("user deleted")
 
     } catch (error) {
         res.status(500).send(error)
     }
 }
 
-const filterUsersByStore = async (req, res) => {
+/*const filterUsersByStore = async (req, res) => {
     try {
         const user = await userModel
             .find({
@@ -74,8 +74,6 @@ const filterUsersByStore = async (req, res) => {
 */
 module.exports = {
     createUser,
-    getAllUsers /*,
-    filterUsersByStore,
-    updateUser,
-    deleteUserById */
+    getAllUsers ,
+    deleteUserById 
 }
