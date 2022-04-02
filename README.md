@@ -29,6 +29,7 @@ METHOD | ENDPOINT         | TOKEN |   ROLE  | DESCRIPTION                      |
 -------|------------------|-------|---------|----------------------------------|--------------------------------|----------------------------
 GET    | /users           | YES   | ADMIN / TEACHER | Admin: finds users by name and/or role            Teacher: finds users in their courses by name and/or role| query: search string; role; group             | array of objects with user name, messages, tests, points, reward log, courses and avatar
 GET    | /users/:user_id  | YES   | ADMIN / TEACHER | Finds a particular user  | user_id                  | object with user name, messages, tests, points, reward log, courses and avatar
+GET    | /users/students  | YES   | ADMIN / TEACHER | Finds all studens  | role: Student                  | array of students
 POST   | /users           | YES   | ADMIN   | Creates a new user               | name, email, password, role    | object with name and email
 PUT    | /users/:user_id  | YES   | ADMIN   | Updates a user                   | name, email, password, role, courses, avatar, group, tests, points | object with updated user
 DELETE | /users/:user_id  | YES   | ADMIN   | Deletes a user                   | user_id                        | object with deleted user name and email
