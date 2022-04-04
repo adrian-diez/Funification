@@ -11,6 +11,7 @@ const { createUser,
     deleteUserById,
     getStudents
 } = require('../controllers/user.controller')
+
 router.post('/', createUser)
 .get('/', getAllUsers)
 .get('/students', getStudents)

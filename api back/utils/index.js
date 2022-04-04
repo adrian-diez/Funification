@@ -1,4 +1,4 @@
-/*const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken')
 const UserModel = require('../models/users.model')
 
 async function checkAuth(req, res, next) {
@@ -7,39 +7,18 @@ async function checkAuth(req, res, next) {
 
         jwt.verify(req.headers.token, process.env.SECRET, async (err, decoded) => {
             if (err) return res.status(500).send('Token not valid')
+            console.log(decoded)
+            const user = await UserModel.findOne({ id: decoded._id }, {password: 0})
 
-            const user = await UserModel.findOne({ email: decoded.email })
+            if (!user) return res.status(500).send('No user found with this id')
 
-            if (!user) return res.status(500).send('Token not valid')
-            else {
-                res.locals.user = user
-                next()
-            }
-        })
-    } catch (err) {
-        console.error(err)
-        res.status(500).send(`Error authorizing user: ${err}`)
-    }
-}
-
-async function checkIf(req, res, next) {
-    try {
-        if (req.headers.token) {
-            jwt.verify(req.headers.token, process.env.SECRET, async (err, decoded) => {
-                if (err) return res.status(500).send('Token not valid')
-
-                const user = await UserModel.findOne({ email: decoded.email })
-
-                if (!user) return res.status(500).send('Token not valid')
-                else {
-                    res.locals.user = user
-                    next()
-                }
-            })
-        } else {
+            // saves user in local storage
+            res.locals.user = user
+            
+            // calls next middleware
             next()
-        }
-
+            
+        })
     } catch (err) {
         console.error(err)
         res.status(500).send(`Error authorizing user: ${err}`)
@@ -59,4 +38,4 @@ async function checkAdmin(req, res, next) {
     }
 }
 
-module.exports = { checkAuth, checkAdmin, checkIf }*/
+module.exports = { checkAuth, checkAdmin }

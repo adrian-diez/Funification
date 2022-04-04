@@ -27,9 +27,10 @@ const signup = async (req, res) => {
 const login = async (req, res) => {
     try {
         const user = await userModel.findOne({ email: req.body.email })
+        // If user doesn't exist, send error
+        if (!user) return res.json({ error: 'incorrect user or password' }) 
 
-        if (!user) return res.json({ error: 'incorrect user or password' }) //If user doesn't exist, send error
-
+        // If password is incorrect, send an error
         if (!bcrypt.compareSync(req.body.password, user.password)) return res.json({ error: 'incorrect user or password' })
 
         if (bcrypt.compareSync(req.body.password, user.password)) {
@@ -52,9 +53,13 @@ const check = async (req, res) => {
     return res.send('User logged in')
   
 }
+const me = async (req, res) => {
+    res.status(200).json(res.locals.user)
+}
 
 module.exports = {
     signup,
     login,
-    check
+    check,
+    me
 }
