@@ -23,7 +23,7 @@ const mongoose = require('mongoose')
                 .use(express.json())
                 .use('/api', require('./routes/index'))
 
-            const PORT = process.env.PORT || 8080
+            const PORT = process.env.PORT 
             app.listen(PORT, (err) => {
                 if (err) {
                     console.log(err)
