@@ -5,7 +5,13 @@ const router = require('express').Router()
     checkAdmin
 } = require('../utils/index')*/
 
-const { createUser, getAllUsers, updateUser, deleteUserById, getStudents } = require('../controllers/user.controller')
+const { createUser,
+    getAllUsers,
+    updateUser,
+    deleteUserById,
+    getStudents
+} = require('../controllers/user.controller')
+
 router.post('/', createUser)
 .get('/', getAllUsers)
 .get('/students', getStudents)
