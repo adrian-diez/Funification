@@ -9,12 +9,14 @@ const { createUser,
     getAllUsers,
     updateUser,
     deleteUserById,
-    getStudents
+    getStudents,
+    getUserById
 } = require('../controllers/user.controller')
 
 router.post('/', createUser)
 .get('/', getAllUsers)
 .get('/students', getStudents)
+.get('/:userId', getUserById)
 .put('/:userId', updateUser)
 .delete('/:userId', deleteUserById)
 

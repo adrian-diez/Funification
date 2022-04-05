@@ -42,10 +42,10 @@ const userSchema = new mongoose.Schema({
             message: '{VALUE} is not supported'
         }
     },
-    courses: {
+    courses: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'courses'
-    },
+        ref: 'course'
+    }],
     messages: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'messages'
