@@ -61,6 +61,16 @@ const deleteUserById = async (req, res) => {
     }
 }
 
+const getUserById = async (req, res) => {
+    try {
+        const user = await UserModel.findById(req.params.userId)
+        res.json(user)
+
+    } catch (error) {
+        res.status(500).send(error)
+    }
+}
+
 const getStudents = async (req, res) => {
     try {
         const student = await UserModel
@@ -82,5 +92,6 @@ module.exports = {
     getAllUsers,
     updateUser,
     deleteUserById,
-    getStudents
+    getStudents,
+    getUserById
 }
