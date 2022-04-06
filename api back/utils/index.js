@@ -4,17 +4,17 @@ const UserModel = require('../models/users.model')
 async function checkAuth(req, res, next) {
     try {
         if (!req.headers.token) return res.status(500).send('User not logged in')
-
+        
         jwt.verify(req.headers.token, process.env.SECRET, async (err, decoded) => {
             if (err) return res.status(500).send('Token not valid')
             console.log(decoded)
-            const user = await UserModel.findOne({ id: decoded._id }, {password: 0})
+            const user = await UserModel.findOne({ _id: decoded.user_id }, {password: 0})
+            console.log(user)
 
             if (!user) return res.status(500).send('No user found with this id')
-
+            
             // saves user in local storage
             res.locals.user = user
-            
             // calls next middleware
             next()
             

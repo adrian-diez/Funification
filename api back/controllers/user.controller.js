@@ -71,6 +71,33 @@ const getUserById = async (req, res) => {
     }
 }
 
+const getUserCourses = async (req, res) => {
+    try {
+        
+        const user = await UserModel.findById(req.params.userId)
+        res.json({
+            user: user.name,
+            courses: user.courses
+        })
+
+    } catch (error) {
+        res.status(500).send(error)
+    }
+}
+
+const getMyCourses = async (req, res) => {
+    try {
+        const user = await UserModel.findById(res.locals.user._id).populate('courses')
+        res.json({
+            user: user.name,
+            courses: user.courses
+        })
+
+    } catch (error) {
+        res.status(500).send(error)
+    }
+}
+
 const getStudents = async (req, res) => {
     try {
         const student = await UserModel
@@ -90,8 +117,10 @@ const getStudents = async (req, res) => {
 module.exports = {
     createUser,
     getAllUsers,
+    getUserById,
+    getUserCourses,
     updateUser,
     deleteUserById,
     getStudents,
-    getUserById
+    getMyCourses
 }
