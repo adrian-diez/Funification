@@ -16,7 +16,10 @@ const courseSchema = new mongoose.Schema({
   teachers: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'users'
-  }]
+  }],
+  img: {
+    type: String
+  }
 })
 
 const CourseModel = mongoose.model('course', courseSchema)
