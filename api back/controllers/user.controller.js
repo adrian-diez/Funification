@@ -98,6 +98,29 @@ const getMyCourses = async (req, res) => {
     }
 }
 
+const getMyCoursesStudents = async (req, res) => {
+    try {
+        const user = await UserModel.findById(res.locals.user._id).populate({
+            path: 'courses',
+            select: 'students',
+            populate: {
+                path: 'students',
+                model: 'user',
+                select: 'name groups _id'
+            }
+        })
+        res.json({
+            user: user.name,
+            test: '12345',
+            courses: user.courses,
+            id: user._id
+        })
+
+    } catch (error) {
+        res.status(500).send(error)
+    }
+}
+
 const getStudents = async (req, res) => {
     try {
         const student = await UserModel
@@ -122,5 +145,6 @@ module.exports = {
     updateUser,
     deleteUserById,
     getStudents,
-    getMyCourses
+    getMyCourses,
+    getMyCoursesStudents
 }
