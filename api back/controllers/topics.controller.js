@@ -1,3 +1,4 @@
+const CourseModel = require('../models/courses.model')
 const TopicModel = require('../models/topics.model')
 
 const createTopic = async (req, res) => {
@@ -31,6 +32,20 @@ const getTopicById = async (req, res) => {
     }
 }
 
+const getTopicsByCourseId = async (req, res) => {
+    try {
+        const topics = await CourseModel
+        .findById(req.params.courseId, { name: 1, topics: 1 }).
+        populate({
+            path: 'topics',
+            model: 'topic'
+        })
+        res.status(200).json(topics)
+    } catch (error) {
+        res.status(500).send(error)
+    }
+}
+
 const updateOneTopic = async (req, res) => {
     try {
         const topic = await TopicModel.findByIdAndUpdate(req.params.topicId, req.body)
@@ -58,6 +73,7 @@ module.exports = {
     createTopic,
     getTopics,
     getTopicById,
+    getTopicsByCourseId,
     updateOneTopic,
     deleteOneTopic
 }
