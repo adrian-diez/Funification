@@ -48,7 +48,7 @@ const getTopicsByCourseId = async (req, res) => {
 
 const updateOneTopic = async (req, res) => {
     try {
-        const topic = await TopicModel.findByIdAndUpdate(req.params.topicId, req.body)
+        const topic = await TopicModel.findByIdAndUpdate(req.params.topicId, req.body,{ new: true })
         res.status(200).json(topic)
     }
     catch (error) {
