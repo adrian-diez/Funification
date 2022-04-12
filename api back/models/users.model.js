@@ -46,10 +46,10 @@ const userSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'course'
     }],
-    messages: {
+    messages: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'messages'
-    },
+    }],
     tests: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'tests'

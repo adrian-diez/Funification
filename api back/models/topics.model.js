@@ -7,11 +7,21 @@ const topicSchema = new mongoose.Schema({
     },
     theory: [{
         type: String,
-        required: true
+        default: []
     }],
-    practice: [{
-        type: String,
-        required: true
+    questions: [{
+        question: {
+            type: String
+        },
+        answers: [{
+            suggestion: {
+                type: String
+            },
+            correct: {
+                type: Boolean,
+                default: false
+            }
+        }],
     }],
 })
 

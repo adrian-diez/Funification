@@ -111,7 +111,6 @@ const getMyCoursesStudents = async (req, res) => {
         })
         res.json({
             user: user.name,
-            test: '12345',
             courses: user.courses,
             id: user._id
         })
