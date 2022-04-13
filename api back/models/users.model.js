@@ -48,7 +48,7 @@ const userSchema = new mongoose.Schema({
     }],
     messages: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'messages'
+        ref: 'message'
     }],
     tests: [{
         type: mongoose.Schema.Types.ObjectId,

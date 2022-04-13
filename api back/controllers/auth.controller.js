@@ -29,7 +29,6 @@ const login = async (req, res) => {
         const user = await userModel.findOne({ email: req.body.email })
         // If user doesn't exist, send error
         if (!user) return res.json({ error: 'incorrect user or password' }) 
-        console.log(user)
         // If password is incorrect, send an error
         if (!bcrypt.compareSync(req.body.password, user.password)) return res.json({ error: 'incorrect user or password' })
 
