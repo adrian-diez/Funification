@@ -25,7 +25,7 @@ const createUser = async (req, res) => {
 
 const getAllUsers = async (req, res) => {
     try {
-        const user = await UserModel.find(req.params)
+        const user = await UserModel.find(req.query)
         res.json(user)
 
     } catch (error) {

@@ -26,15 +26,26 @@ const getUserMessages = async (req, res) => {
 
 const getMyMessages = async (req, res) => {
   try {
-      const user = await UserModel
-      .find({from: res.locals.user._id}, { _id: 1, messages: 1 })
-      .populate({
-          path: 'messages',
-          model: 'messages'
-      })
-      res.json(user)
+    const user = await UserModel
+    .findById(res.locals.user._id, { _id: 1, messages: 1 })
+    .populate({
+        path: 'messages',
+        model: 'message',
+        populate: [{
+          path:'from',
+          model: 'user',
+          select: 'name'
+        },
+      {
+        path:'to',
+        model: 'user',
+        select: 'name'
+      }]
+    })
+    res.json(user)
   } catch (error) {
-      res.status(500).send(error)
+    res.status(500)
+    throw new Error(error)
   }
 }
 
@@ -52,6 +63,9 @@ const createMessage = async (req, res) => {
 
     from.messages.push(message)
     to.messages.push(message)
+
+    from.save()
+    to.save()
 
 
     res.json({

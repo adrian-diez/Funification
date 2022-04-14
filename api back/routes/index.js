@@ -11,9 +11,8 @@ const { checkAuth } = require('../utils/index')
 
 router.use('/users', checkAuth, usersRouter)
 .use('/auth', authRouter)
-.use('/courses', coursesRouter)
+.use('/courses', checkAuth, coursesRouter)
 .use('/topics', topicsRouter)
-.use('/messages', messageRouter)
-.use('/rewards', rewardsRouter)
+.use('/messages', checkAuth, messageRouter)
 
 module.exports = router

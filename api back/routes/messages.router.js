@@ -10,9 +10,9 @@ const {
  = require ('../controllers/messages.controller')
 
 router.post('/', createMessage)
+.get('/my-messages', getMyMessages)
 .get('/', getMessages)
 .get('/:userId', getUserMessages)
-.get('/my-messages', getMyMessages)
 .delete('/:messageId', deleteMessage)
 
 module.exports = router

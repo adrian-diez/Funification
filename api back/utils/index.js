@@ -7,9 +7,7 @@ async function checkAuth(req, res, next) {
         
         jwt.verify(req.headers.token, process.env.SECRET, async (err, decoded) => {
             if (err) return res.status(500).send('Token not valid')
-            console.log(decoded)
             const user = await UserModel.findOne({ _id: decoded.user_id }, {password: 0})
-            console.log(user)
 
             if (!user) return res.status(500).send('No user found with this id')
             
