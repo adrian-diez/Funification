@@ -2,7 +2,7 @@ const RewardModel = require('../models/rewards.model')
 
 const createReward = async (req, res) => {
   try {
-    const course = await RewardModel.create(req.body)
+    const reward = await RewardModel.create(req.body)
     res.status(200).json(reward)
   } 
   catch (error) {

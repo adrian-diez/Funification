@@ -5,12 +5,12 @@ const rewardSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Please input a topic name']
     },
-    cost: [{
+    cost: {
         type: Number,
-    }],
-   img: [{
+    },
+    img: {
        type: String
-    }],
+    }
 })
 
 const RewardModel = mongoose.model('reward', rewardSchema)
