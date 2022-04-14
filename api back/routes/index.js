@@ -14,5 +14,6 @@ router.use('/users', checkAuth, usersRouter)
 .use('/courses', checkAuth, coursesRouter)
 .use('/topics', topicsRouter)
 .use('/messages', checkAuth, messageRouter)
+.use('/rewards', rewardsRouter)
 
 module.exports = router
