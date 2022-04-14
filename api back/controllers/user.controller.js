@@ -40,7 +40,8 @@ const updateUser = async (req, res) => {
                 new: true,
                 runValidators: true
             })
-        res.json(user)
+            user.save()
+            res.json(user)
 
     } catch (error) {
         res.status(500).send(error)
