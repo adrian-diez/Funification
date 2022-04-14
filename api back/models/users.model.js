@@ -59,7 +59,8 @@ const userSchema = new mongoose.Schema({
         ref: 'rewardLog'
     }],
     points: {
-        type: Number
+        type: Number,
+        default: 0
     },
     avatar: [{
         type: mongoose.Schema.Types.ObjectId,
