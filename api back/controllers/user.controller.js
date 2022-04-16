@@ -64,7 +64,7 @@ const deleteUserById = async (req, res) => {
 
 const getUserById = async (req, res) => {
     try {
-        const user = await UserModel.findById(req.params.userId)
+        const user = await UserModel.findById(req.params.userId).populate({path:'rewardLog', model:'reward'})
         res.json(user)
 
     } catch (error) {
@@ -107,7 +107,7 @@ const getMyCoursesStudents = async (req, res) => {
             populate: {
                 path: 'students',
                 model: 'user',
-                select: 'name groups _id'
+                select: 'name groups _id avatar'
             }
         })
         res.json({

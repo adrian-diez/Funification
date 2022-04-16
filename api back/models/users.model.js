@@ -62,10 +62,9 @@ const userSchema = new mongoose.Schema({
         type: Number,
         default: 0
     },
-    avatar: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'avatar'
-    }],
+    avatar: {
+        type: String
+    },
     groups: [{
         type: String
     }]
