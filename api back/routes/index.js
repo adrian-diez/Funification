@@ -6,6 +6,8 @@ const coursesRouter = require('./courses.router')
 const topicsRouter = require('./topics.router')
 const messageRouter = require('./messages.router')
 const rewardsRouter = require('./rewards.router')
+const funFactsRouter = require('./funfacts.router')
+
 
 const { checkAuth } = require('../utils/index')
 
@@ -15,5 +17,6 @@ router.use('/users', checkAuth, usersRouter)
 .use('/topics', topicsRouter)
 .use('/messages', checkAuth, messageRouter)
 .use('/rewards', rewardsRouter)
+.use('/funfacts', funFactsRouter)
 
 module.exports = router
