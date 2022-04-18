@@ -107,7 +107,7 @@ const getMyCoursesStudents = async (req, res) => {
             populate: {
                 path: 'students',
                 model: 'user',
-                select: 'name groups _id avatar'
+                select: 'name groups _id avatar points'
             }
         })
         res.json({
